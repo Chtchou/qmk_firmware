@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    | BEAKLC|------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR |Bkspac| /Space  /       \Space \  |Enter | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
@@ -45,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_ESC,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_BSPC, \
   KC_TAB,   KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN,  KC_QUOT, \
   KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE,  KC_BEAKLC,KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_RSFT, \
-                 KC_LGUI,KC_LALT,KC_LCTRL, KC_LOWER, KC_SPC,      KC_ENT,  KC_RAISE, KC_RCTRL, KC_RALT, KC_RGUI \
+                 KC_LGUI,KC_LALT,KC_LCTRL, KC_BSPC, KC_SPC,      KC_SPC,  KC_ENT, KC_RCTRL, KC_RALT, KC_RGUI \
 ),
 /*
  * BEAKLC
@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    | QWERTY|------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   -  |   '  |   .  |-------|    |-------|   B  |   C  |   L  |   F  |   V  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |   I  | / Bspc  /       \Enter \  | Space| RCTR | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR |Bkspac| /   I   /       \Space \  | Enter| RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_ESC,   KC_Q,   KC_Y,    KC_O,    KC_U,    KC_K,                      KC_J,    KC_D,    KC_N,    KC_M,    KC_SLSH, KC_RBRC,    \
   KC_TAB,   KC_W,   KC_H,    KC_E,    KC_A,    KC_COMM,                   KC_G,    KC_S,    KC_R,    KC_T,    KC_P,    KC_GRV, \
   KC_LSFT,  KC_Z,   KC_X,    KC_MINS, KC_QUOT, KC_DOT, KC_MUTE, KC_QWERTY,KC_B,    KC_C,    KC_L,    KC_F,    KC_V,    KC_RSFT, \
-                 KC_LGUI,KC_LALT,KC_LCTRL,KC_I, KC_BSPC,            KC_ENT,  KC_SPC, KC_RCTRL, KC_RALT, KC_RGUI \
+                 KC_LGUI,KC_LALT,KC_LCTRL,KC_BSPC, KC_I,            KC_SPC,  KC_ENT, KC_RCTRL, KC_RALT, KC_RGUI \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
