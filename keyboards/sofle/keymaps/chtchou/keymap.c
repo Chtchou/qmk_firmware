@@ -6,12 +6,12 @@
 
 #define LSFT_SPC LSFT_T(KC_SPC)
 #define LSFT_I LSFT_T(KC_I)
-#define LOW_BSPC LT(KC_LOWER, KC_BSPC)
+#define LOW_BSPC LT(_LOWER, KC_BSPC)
 #define LCTR_ESC LCTL_T(KC_ESC)
 
 // Right Thumb
 #define RSFT_SPC RSFT_T(KC_SPC)
-#define RAI_ENT LT(KC_RAISE, KC_ENT)
+#define RAI_ENT LT(_RAISE, KC_ENT)
 #define RCTR_TAB RCTL_T(KC_TAB)
 
 
