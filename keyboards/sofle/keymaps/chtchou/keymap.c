@@ -3,7 +3,6 @@
 /*ALIASES*/
 // Thumbs home row mods
 // Left Thumb
-
 #define LSFT_SPC LSFT_T(KC_SPC)
 #define LSFT_I LSFT_T(KC_I)
 #define LOW_BSPC LT(_LOWER, KC_BSPC)
@@ -13,6 +12,16 @@
 #define RSFT_SPC RSFT_T(KC_SPC)
 #define RAI_ENT LT(_RAISE, KC_ENT)
 #define RCTR_TAB RCTL_T(KC_TAB)
+
+// Left Home Mods
+#define LGUI_Z LGUI_T(KC_Z)
+#define LALT_H LALT_T(KC_H)
+#define LCTR_E LCTL_T(KC_E)
+
+// Right Home Mods
+#define RCTR_T RCTL_T(KC_T)
+#define LALT_R LALT_T(KC_R)
+#define RGUI_P RGUI_T(KC_P)
 
 
 enum sofle_layers {
@@ -65,25 +74,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * BEAKLC
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |   \  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  [   |
+ * | CAPS |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |   =  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | ESC  |   Q  |   Y  |   O  |   U  |   K  |                    |   J  |   D  |   N  |   M  |   /  |  ]   |
+ * |   (  |   `  |   Y  |   O  |   U  |   X  |                    |   G  |   C  |   M  |   N  |   '  |   )  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | TAB  |   W  |   H  |   E  |   A  |   ,  |-------.    ,-------|   G  |   S  |   R  |   T  |   P  |  `   |
+ * |   [  |G  Z  |A  H  |C  E  |   A  |   ,  |-------.    ,-------|   D  |   S  |C  T  |A  R  |G  P  |   ]  |
  * |------+------+------+------+------+------|  MUTE |    | QWERTY|------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   -  |   '  |   .  |-------|    |-------|   B  |   C  |   L  |   F  |   V  |RShift|
+ * |   \  |   J  |   Q  |   -  |   K  |   .  |-------|    |-------|   W  |   F  |   L  |   B  |   V  |   /  |
  * `-----------------------------------------/      /      \      \-----------------------------------------'
- *            | LGUI | LAlt | ESC  |   I  | /Bkspac/        \Enter \  |Space | Tab  | RAlt | RGUI |
+ *            | LGUI | LAlt | ESC  |   I  | /Bkspac/        \Enter \  |Space | Tab  | RAlt |RSHIFT|
  *            |      |      | LCTR |Lshift|/LOWER /          \RAISE \ |RShift| RCTR |      |      |
  *            `----------------------------------'            '------''---------------------------'
  */
 
 [_BEAKLC] = LAYOUT( \
-  KC_BSLS,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_LBRC,  \
-  KC_ESC,   KC_Q,   KC_Y,    KC_O,    KC_U,    KC_K,                      KC_J,    KC_D,    KC_N,    KC_M,    KC_SLSH, KC_RBRC,    \
-  KC_TAB,   KC_W,   KC_H,    KC_E,    KC_A,    KC_COMM,                   KC_G,    KC_S,    KC_R,    KC_T,    KC_P,    KC_GRV, \
-  KC_LSFT,  KC_Z,   KC_X,    KC_MINS, KC_QUOT, KC_DOT, KC_MUTE, KC_QWERTY,KC_B,    KC_C,    KC_L,    KC_F,    KC_V,    KC_RSFT, \
-                KC_LGUI,KC_LALT,LCTR_ESC,LSFT_I,LOW_BSPC,            RAI_ENT, RSFT_SPC, RCTR_TAB, KC_RALT, KC_RGUI \
+  KC_CAPS,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQUAL,  \
+  KC_LPRN,  KC_GRV, KC_Y,    KC_O,    KC_U,    KC_X,                      KC_G,    KC_C,    KC_M,    KC_N,    KC_QUOT, KC_RPRN,    \
+  KC_LBRC,  LGUI_Z, LALT_H,  LCTR_E,  KC_A,    KC_COMM,                   KC_D,    KC_S,    RCTR_T,  LALT_R,  RGUI_P,  KC_RBRC, \
+  KC_BSLS,  KC_J,   KC_Q,    KC_MINS, KC_K,    KC_DOT, KC_MUTE, KC_QWERTY,KC_W,    KC_F,    KC_L,    KC_B,    KC_V,    KC_SLSH, \
+                KC_LGUI,KC_LALT,LCTR_ESC,LSFT_I,LOW_BSPC,            RAI_ENT, RSFT_SPC, RCTR_TAB, KC_RALT, KC_RSFT \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -113,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Esc  | Ins  | Pscr | Menu |      |      |                    |      | PWrd |  Up  | NWrd | DLine| Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  | LAt  | LCtl |LShift|      | Caps |-------.    ,-------|      | Left | Down | Rigth|  Del | Bspc |
- * |------+------+------+------+------+------|  MUTE  |    |       |------+------+------+------+------+------|
+ * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
  * |Shift | Undo |  Cut | Copy | Paste|      |-------|    |-------|      | LStr |      | LEnd |      | Shift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
