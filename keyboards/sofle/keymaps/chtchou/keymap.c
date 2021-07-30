@@ -76,11 +76,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | CAPS |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |   =  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   (  |   `  |   Y  |   O  |   U  |   X  |                    |   G  |   C  |   M  |   N  |   '  |   )  |
+ * |   (  |   Q  |   Y  |   O  |   U  |   X  |                    |   G  |   C  |   M  |   N  |   '  |   )  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |   [  |G  Z  |A  H  |C  E  |   A  |   ,  |-------.    ,-------|   D  |   S  |C  T  |A  R  |G  P  |   ]  |
  * |------+------+------+------+------+------|  MUTE |    | QWERTY|------+------+------+------+------+------|
- * |   \  |   J  |   Q  |   -  |   K  |   .  |-------|    |-------|   W  |   F  |   L  |   B  |   V  |   /  |
+ * |   \  |   J  |   `  |   -  |   K  |   .  |-------|    |-------|   W  |   F  |   L  |   B  |   V  |   /  |
  * `-----------------------------------------/      /      \      \-----------------------------------------'
  *            | LGUI | LAlt | ESC  |   I  | /Bkspac/        \Enter \  |Space | Tab  | RAlt |RSHIFT|
  *            |      |      | LCTR |Lshift|/LOWER /          \RAISE \ |RShift| RCTR |      |      |
@@ -89,14 +89,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_BEAKLC] = LAYOUT( \
   KC_CAPS,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQUAL,  \
-  KC_LPRN,  KC_GRV, KC_Y,    KC_O,    KC_U,    KC_X,                      KC_G,    KC_C,    KC_M,    KC_N,    KC_QUOT, KC_RPRN,    \
+  KC_LPRN,  KC_Q,   KC_Y,    KC_O,    KC_U,    KC_X,                      KC_G,    KC_C,    KC_M,    KC_N,    KC_QUOT, KC_RPRN,    \
   KC_LBRC,  LGUI_Z, LALT_H,  LCTR_E,  KC_A,    KC_COMM,                   KC_D,    KC_S,    RCTR_T,  LALT_R,  RGUI_P,  KC_RBRC, \
-  KC_BSLS,  KC_J,   KC_Q,    KC_MINS, KC_K,    KC_DOT, KC_MUTE, KC_QWERTY,KC_W,    KC_F,    KC_L,    KC_B,    KC_V,    KC_SLSH, \
+  KC_BSLS,  KC_J,   KC_GRV,    KC_MINS, KC_K,    KC_DOT, KC_MUTE, KC_QWERTY,KC_W,    KC_F,    KC_L,    KC_B,    KC_V,    KC_SLSH, \
                 KC_LGUI,KC_LALT,LCTR_ESC,LSFT_I,LOW_BSPC,            RAI_ENT, RSFT_SPC, RCTR_TAB, KC_RALT, KC_RSFT \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
+ * | CAPS |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -117,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* RAISE
  * ,----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * | CAPS |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Esc  | Ins  | Pscr | Menu |      |      |                    |      | PWrd |  Up  | NWrd | DLine| Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
