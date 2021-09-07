@@ -4,40 +4,46 @@
 // Thumbs home row mods
 // Left Thumb
 #define LSFT_SPC LSFT_T(KC_SPC)
-#define LSFT_I LSFT_T(KC_I)
-#define LOW_BSPC LT(_LOWER, KC_BSPC)
+#define SYM_I    LT(_SYMBOL, KC_I)
+#define EDT_BSPC LT(_EDIT, KC_BSPC)
 #define LCTR_ESC LCTL_T(KC_ESC)
 
 // Right Thumb
-#define RSFT_SPC RSFT_T(KC_SPC)
-#define RAISE_ENT LT(_RAISE, KC_ENT)
+#define SYM_SPC  LT(_SYMBOL, KC_SPC)
+#define NUM_ENT  LT(_NUM, KC_ENT)
 #define RCTR_TAB RCTL_T(KC_TAB)
 
 // Left Home Mods
-#define LSFT_A LSFT_T(KC_A)
-#define LGUI_Z LGUI_T(KC_Z)
-#define LALT_H LALT_T(KC_H)
-#define LCTR_E LCTL_T(KC_E)
+#define LSFT_A   LSFT_T(KC_A)
+#define LGUI_Z   LGUI_T(KC_Z)
+#define LALT_H   LALT_T(KC_H)
+#define LCTR_E   LCTL_T(KC_E)
+#define RALT_SCL RALT_T(KC_SCLN)
 
 // Right Home Mods
-#define LSFT_S LSFT_T(KC_S)
-#define RCTR_T RCTL_T(KC_T)
-#define LALT_R LALT_T(KC_R)
-#define RGUI_P RGUI_T(KC_P)
+#define LSFT_S   LSFT_T(KC_S)
+#define RCTR_T   RCTL_T(KC_T)
+#define LALT_R   LALT_T(KC_R)
+#define RGUI_P   RGUI_T(KC_P)
+#define RALT_B   RALT_T(KC_B)
 
+// Other
+#define LALT_F4  LALT(KC_F4)
+#define CTAL_DEL LALT(LCTL(KC_DEL))
+#defube LCTR_A   LCTL(KC_A)
 
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _QWERTY,
     _BEAKLC,
-    _LOWER,
-    _RAISE,
-    _ADJUST,
+    _EDIT,
+    _NUM,
+    _SYMBOL,
 };
 
 enum custom_keycodes {
-    KC_QWERTY = SAFE_RANGE,
-    KC_BEAKLC,
+    KC_QWERT = SAFE_RANGE,
+    KC_BEAKL,
     KC_LOWER,
     KC_RAISE,
     KC_ADJUST,
@@ -50,135 +56,119 @@ enum custom_keycodes {
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/*
- * QWERTY
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | ESC  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  | Bspc |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------|  MUTE |    |BEAKLC |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
- * `-----------------------------------------/      /      \      \-----------------------------------------'
- *            | LGUI | LAlt | ESC  |Space | /Bkspac/        \Enter \  |Space | Tab  | RAlt | RGUI |
- *            |      |      | LCTR |LShift|/LOWER /          \RAISE \ |Rshift| RCTR |      |      |
- *            `----------------------------------'           '------''---------------------------'
+/* QWERTY
+ * ,-----------------------------------------------.                          ,-----------------------------------------------.
+ * | ~  `  |   1  !|   2  @|   3  #|   4  $|   5  %|                          |   6  ^|   7  &|   8  *|   9  (|   0  )|   -  _|
+ * |-------+-------+-------+-------+-------+-------|                          |-------+-------+-------+-------+-------+-------|
+ * |  ESC  |   Q   |   W   |   E   |   R   |   T   |                          |   Y   |   U   |   I   |   O   |   P   |  Bspc |
+ * |-------+-------+-------+-------+-------+-------|                          |-------+-------+-------+-------+-------+-------|
+ * |  Tab  |   A   |   S   |   D   |   F   |   G   |--------.        ,--------|   H   |   J   |   K   |   L   |   ;  :|   '  "|
+ * |-------+-------+-------+-------+-------+-------|  MUTE  |        | BEAKLC |-------+-------+-------+-------+-------+-------|
+ * | LShift|   Z   |   X   |   C   |   V   |   B   |--------|        |--------|   N   |   M   |   ,  <|   .  >|   /  ?| RShift|
+ * `-----------------------------------------------/       /          \       \-----------------------------------------------'
+ *             |  LGUI |  LAlt |  ESC  | Space |  / Bspc  /            \ Enter \  | Space |  Tab  |  RAlt |  RGUI |
+ *             |       |       | LCtrl | LShift| / EDIT  /              \ NUM   \ | Rshift|  RCTR |       |       |
+ *             `-------------------------------''-------'                '------''--------------------------------'
  */
-
+    
 [_QWERTY] = LAYOUT( \
-  KC_GRV,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_GRV, \
-  KC_ESC,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_BSPC, \
-  KC_TAB,   KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN,  KC_QUOT, \
-  KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE,  KC_BEAKLC,KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_RSFT, \
-                KC_LGUI,KC_LALT,LCTR_ESC,LSFT_SPC,LOW_BSPC,      RAI_ENT, RSFT_SPC, RCTR_TAB, KC_RALT, KC_RGUI \
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, \
+  KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
+  KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MUTE,     KC_BEAKL,KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
+               KC_LGUI, KC_LALT, LCTR_ESC,LSFT_SPC,LOW_BSPC,            RAI_ENT, RSFT_SPC,RCTR_TAB,KC_RALT, KC_RGUI \
 ),
-/*
- * BEAKLC
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * | CAPS |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |   =  |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   [  |   Q  |   Y  |   O  |   U  |   X  |                    |   G  |   C  |   M  |   N  |   '  |   ]  |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   (  |G  Z  |A  H  |C  E  |S  A  |   ,  |-------.    ,-------|   D  |S  S  |C  T  |A  R  |G  P  |   )  |
- * |------+------+------+------+------+------|  MUTE |    | QWERTY|------+------+------+------+------+------|
- * |   \  |   J  |   `  |   -  |   K  |   .  |-------|    |-------|   W  |   F  |   L  |   B  |   V  |   /  |
- * `-----------------------------------------/      /      \      \-----------------------------------------'
- *            | LGUI | LAlt | ESC  |   I  | / Bspc /        \Enter \  |Space | Tab  | RAlt |RShift|
- *            |      |      | LCtrl| REGEX|/LOWER /          \RAISE \ |SYMBOL| RCtrl|      |      |
- *            `----------------------------------'            '------''---------------------------'
- */
+    
+/* BEAKLC
+ * ,-----------------------------------------------.                          ,-----------------------------------------------.
+ * |~  `   |   1  !|   2  @|   3  #|   4  $|   5  %|                          |   6  ^|   7  &|   8  *|   9  (|   0  )|   =  +|
+ * |-------+-------+-------+-------+-------+-------|                          |-------+-------+-------+-------+-------+-------|
+ * |   (   |   Q   |   Y   |   O   |   U   |   X   |                          |   G   |   C   |   M   |   N   |   '  "|   )   |
+ * |-------+-------+-------+-------+-------+-------|                          |-------+-------+-------+-------+-------+-------|
+ * |{  [   |G  Z   |A  H   |C  E   |S  A   |   ,  <|--------.        ,--------|   D   |S  S   |C  T   |A  R   |G  P   |   ]  }|
+ * |-------+-------+-------+-------+-------+-------|  MUTE  |        | QWERTY |-------+-------+-------+-------+-------+-------|
+ * ||  \   |   J   |Ag ;  :|   -  _|   K   |   .  >|--------|        |--------|   W   |   F   |   L   |Ag B   |   V   |   /  ?|
+ * `-----------------------------------------------/       /          \       \-----------------------------------------------'
+ *             |  LGUI |  LAlt |  ESC  |    I  |  / Bspc  /            \ Enter \  | Space |  Tab  |  RAlt | RShift|
+ *             |       |       | LCtrl | SYMBOL| / EDIT  /              \  NUM  \ | SYMBOL| RCtrl |       |  CAPS |
+ *             `-------------------------------''-------'                '------''--------------------------------'
+ */    
 
 [_BEAKLC] = LAYOUT( \
-  KC_CAPS,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQUAL,  \
-  KC_LPRN,  KC_Q,   KC_Y,    KC_O,    KC_U,    KC_X,                      KC_G,    KC_C,    KC_M,    KC_N,    KC_QUOT, KC_RPRN,    \
-  KC_LBRC,  LGUI_Z, LALT_H,  LCTR_E,  LSFT_A,  KC_COMM,                   KC_D,    LSFT_S,  RCTR_T,  LALT_R,  RGUI_P,  KC_RBRC, \
-  KC_BSLS,  KC_J,   KC_GRV,  KC_MINS, KC_K,    KC_DOT, KC_MUTE, KC_QWERTY,KC_W,    KC_F,    KC_L,    KC_B,    KC_V,    KC_SLSH, \
-                KC_LGUI,KC_LALT,LCTR_ESC,LSFT_I,LOW_BSPC,            RAI_ENT, RSFT_SPC, RCTR_TAB, KC_RALT, KC_RSFT \
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQUAL, \
+  KC_LPRN, KC_Q,    KC_Y,    KC_O,    KC_U,    KC_X,                          KC_G,    KC_C,    KC_M,    KC_N,    KC_QUOT, KC_RPRN,  \
+  KC_LBRC, LGUI_Z,  LALT_H,  LCTR_E,  LSFT_A,  KC_COMM,                       KC_D,    LSFT_S,  RCTR_T,  LALT_R,  RGUI_P,  KC_RBRC,  \
+  KC_BSLS, KC_J,    RALT_SCL,KC_MINS, KC_K,    KC_DOT,  KC_MUTE,     KC_QWERT,KC_W,    KC_F,    KC_L,    RALT_B,  KC_V,    KC_SLSH,  \
+               KC_LGUI, KC_LALT, LCTR_ESC,SYM_I,   EDT_BSPC,             NUM_ENT, SYM_SPC, RCTR_TAB,KC_RALT, KC_RSFT \
 ),
-/* LOWER
- * ,----------------------------------------.                     ,-----------------------------------------.
- * | CAPS |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |   =  |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   [  | Ins  | Pscr | Menu |      |Alt+F4|                    | PgUp | PWrd |  Up  | NWrd | DLine|   ]  |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   (  | LGUI | LAlt | LCtl |LShift|      |-------.    ,-------|PgDown| Left | Down | Right|  Del |   )  |
- * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * |   \  | Undo |  Cut | Copy | Paste| Redo |-------|    |-------|      | LStr |      | LEnd | Bspc |   /  |
- * `-----------------------------------------/      /      \      \-----------------------------------------'
- *            | LGUI | LAlt | ESC  |   I  | / LOWER/        \Enter \  |Space | Tab  | RAlt |RShift|
- *            |      |      | LCTRL|LShift|/      /          \RAISE \ |RShift| RCtrl|      |      |
- *            `----------------------------------'            '------''---------------------------'
- */
-[_LOWER] = LAYOUT( \
-  _______, _______ , _______ , _______ , _______ , _______,                           _______,  _______  , _______,  _______ ,  _______ ,_______, \
-  _______,  KC_INS,  KC_PSCR,   KC_APP,  XXXXXXX, XXXXXXX,                        KC_PGUP, KC_PRVWD,   KC_UP, KC_NXTWD,KC_DLINE, KC_BSPC, \
-  _______, KC_LALT,  KC_LCTL,  KC_LSFT,  XXXXXXX, KC_CAPS,                       KC_PGDN,  KC_LEFT, KC_DOWN, KC_RGHT,  KC_DEL, KC_BSPC, \
-  _______,KC_UNDO, KC_CUT, KC_COPY, KC_PASTE, XXXXXXX,  _______,       _______,  XXXXXXX, KC_LSTRT, XXXXXXX, KC_LEND,   XXXXXXX, _______, \
-                         _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______ \
+
+/* EDIT
+ * ,-----------------------------------------------.                          ,-----------------------------------------------.
+ * | POWER |   1  !|   2  @|   3  #|   4  $|   5  %|                          |   6  ^|   7  &|   8  *|   9  (|   0  )|   =  +|
+ * |-------+-------+-------+-------+-------+-------|                          |-------+-------+-------+-------+-------+-------|
+ * |   (   |  Ins  |  Pscr |  Menu | Alt+F4| CA_Del|                          |  PgUp |  PWrd |   Up  |  NWrd |  DLine|   )   |
+ * |-------+-------+-------+-------+-------+-------|                          |-------+-------+-------+-------+-------+-------|
+ * |{  [   |  LGUI |  LAlt |  LCtl | LShift|  Find |--------.        ,--------| PgDown|  Left |  Down |  Right|  Del  |   ]  }|
+ * |-------+-------+-------+-------+-------+-------|  MUTE  |        | QWERTY |-------+-------+-------+-------+-------+-------|
+ * |   \   |  Undo |  Cut  |  Copy | Paste |  Bspc |--------|        |--------|       | LStart|       | LEnd  | Bspc  |   /  ?|
+ * `-----------------------------------------------/       /          \       \-----------------------------------------------'
+ *             |  LGUI |  LAlt |  ESC  |    I  |  / EDIT  /            \ Enter \  | Space |  Tab  |  RAlt | RShift|
+ *             |       |       | LCtrl | SYMBOL| /       /              \  NUM  \ | SYMBOL| RCtrl |       |       |
+ *             `-------------------------------''-------'                '------''--------------------------------'
+ */  
+
+[_EDIT] = LAYOUT( \
+  KC_POWER,_______, _______, _______, _______, _______,                       _______,  _______, _______, _______, _______, _______, \
+  _______, KC_INS,  KC_PSCR, KC_APP,  LALT_F4, CTAL_DEL,                      KC_PGUP,  KC_PRVWD,KC_UP,   KC_NXTWD,KC_DLINE,_______, \
+  _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_FIND,                       KC_PGDN,  KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  _______, \
+  _______, KC_UNDO, KC_CUT,  KC_COPY, KC_PASTE,KC_BSPC, _______,     _______, XXXXXXX,  KC_LSTRT,XXXXXXX, KC_LEND, KC_BSPC, _______, \
+               _______, _______, _______, _______, _______,              _______, _______, _______, _______, _______ \
 ),
-/* RAISE
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * | F12  |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   (  | DLine| PWrd |  Up  | Nwrd | PgUp |                    |   ;  |   7  |   8  |   9  |   *  |   )  |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   [  |  Del | Left | Down | Right|PgDown|-------.    ,-------|   .  |   4  |   5  |   6  |   -  |   ]  |
- * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * |   \  |      | LStr |      | LEnd |      |-------|    |-------|   ,  |   1  |   2  |   3  |   +  |   /  |
- * `-----------------------------------------/      /      \      \-----------------------------------------'
- *            | LGUI | LAlt | ESC  |LOWER | / Bspc /        \RAISE \  |Space | Tab  | RAlt |RSHIFT|
- *            |      |      | LCTRL|      |/ LOWER/          \      \ |RShift| RCTRL|      |      |
- *            `----------------------------------'            '------''---------------------------'
- */
-[_RAISE] = LAYOUT( \
-  _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                       KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,\
-  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_F12, \
-  _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                       KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PIPE, \
-  _______,  KC_EQL, KC_MINS, KC_PLUS, KC_LCBR, KC_RCBR, _______,       _______, KC_LBRC, KC_RBRC, KC_SCLN, KC_COLN, KC_BSLS, _______, \
-                       _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______\
+    
+/* NUM
+ * ,-----------------------------------------------.                          ,-----------------------------------------------.
+ * |  F12  |   F1  |   F2  |   F3  |   F4  |   F5  |                          |   F6  |   F7  |   F8  |   F9  |  F10  |  F11  |
+ * |-------+-------+-------+-------+-------+-------|                          |-------+-------+-------+-------+-------+-------|
+ * |   (   | DLine |  PWrd |   Up  |  Nwrd |  PgUp |                          |   ;   |   7   |   8   |   9   |   *   |   )   |
+ * |-------+-------+-------+-------+-------+-------|                          |-------+-------+-------+-------+-------+-------|
+ * |   [   |  Del  |  Left |  Down | Right | PgDown|--------.         ,-------|   ,   |   4   |   5   |   6   |   -   |   ]   |
+ * |-------+-------+-------+-------+-------+-------|  MUTE  |        | QWERTY |-------+-------+-------+-------+-------+-------|
+ * |   \   |       | LStr  |       | LEnd  |   .   |--------|        |--------|   .   |   1   |   2   |   3   |   +   |   /   |
+ * `-----------------------------------------------/       /          \       \-----------------------------------------------'
+ *             |  LGUI |  LAlt |  ESC  |    I  |  / Bspc  /            \  NUM  \  | Space |  Tab  |   0   | Enter |
+ *             |       |       | LCtrl | SYMBOL| /  EDIT /              \       \ | SYMBOL| RCtrl |       |       |
+ *             `-------------------------------''-------'                '------''--------------------------------'
+ */  
+
+[_NUM] = LAYOUT( \
+  KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                         KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  \
+  _______, KC_DLINE,KC_PRVWD,KC_UP,   KC_NXTWD,KC_PGUP,                       KC_SCLN, KC_7,    KC_8,    KC_9,    KC_PAST, _______, \
+  _______, KC_DEL,  KC_AT,   KC_HASH, KC_DLR,  KC_PGDN,                       KC_COMM, KC_4,    KC_5,    KC_6,    KC_PMNS, _______, \
+  _______, XXXXXXX, KC_LSTRT,XXXXXXX, KC_LEND, KC_DOT,  _______,     _______, KC_DOT,  KC_1,    KC_2,    KC_3,    KC_PPLS, _______, \
+               _______, _______, _______, _______, _______,              _______, _______, _______, KC_0,   KC_PENT \
 ),
+
 /* SYMBOL
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * | CAPS |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |   =  |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   (  |   ~  |   .  |   #  |   &  |  Del |                    |   ;  |   [  |   ^  |   ]  |   *  |   )  |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   [  |   `  |   _  |   :  |   =  |   !  |-------.    ,-------|   ?  |   (  |   $  |   )  |   -  |   ]  |
- * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * |   \  | Eur  |   <  |   >  |   %  |   @  |-------|    |-------|   |  |   {  |   #  |   }  |   +  |   /  |
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
- *            |      |      |      |      |/       /         \      \ |      |      |      |      |
- *            `----------------------------------'           '------''---------------------------'
+ * ,-----------------------------------------------.                          ,-----------------------------------------------.
+ * |~  `   |   1   |   2   |   3   |   4   |   5   |                          |   6   |   7   |   8   |   9   |   0   |   =   |
+ * |-------+-------+-------+-------+-------+-------|                          |-------+-------+-------+-------+-------+-------|
+ * |   (   |   ¥   |   #   |   '   |   @   |   ^   |                          |   ~   |   %   |   "   |   !   |   *   |   )   |
+ * |-------+-------+-------+-------+-------+-------|                          |-------+-------+-------+-------+-------+-------|
+ * |   [   |   $   |   <   |   _   |   >   |   ,   |--------.         ,-------|   &   |   {   |   =   |   }   |   -   |   ]   |
+ * |-------+-------+-------+-------+-------+-------|  MUTE  |        | QWERTY |-------+-------+-------+-------+-------+-------|
+ * |   \   |   €   |       |   -   |   *   |   .   |--------|        |--------|   |   |   :   |   +   |   ?   |   +   |   /   |
+ * `-----------------------------------------------/       /          \       \-----------------------------------------------'
+ *             |  LGUI |  LAlt |  ESC  | SYMBOL|  / Bspc  /            \ Enter \  | SYMBOL|  Tab  |  RAlt | RShift|
+ *             |       |       | LCtrl |       | /  EDIT /              \  NUM  \ |       | RCtrl |       |       |
+ *             `-------------------------------''-------'                '------''--------------------------------'
  */
+    
   [_SYMBOL] = LAYOUT( \
-  XXXXXXX , XXXXXXX,  XXXXXXX ,  XXXXXXX , XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  RESET  , XXXXXXX,KC_QWERTY,KC_BEAKLC,CG_TOGG,XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  XXXXXXX , XXXXXXX,CG_TOGG, XXXXXXX,    XXXXXXX,  XXXXXXX,                     XXXXXXX, KC_VOLD, KC_MUTE, KC_VOLU, XXXXXXX, XXXXXXX, \
-  XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,  XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX, \
-                   _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______ \
-  ),
-/* FUNC
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                    |PrtScr|  F7  |  F8  |  F9  |  F12 |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      | LGUI | LALT | LCTRL|LSHIFT|      |-------.    ,-------|ScrLck|  F4  |  F5  |  F6  |  F11 |      |
- * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|Ps Brk|  F1  |  F2  |  F3  |  F10 |      |
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
- *            |      |      |      |      |/       /         \      \ |      |      |      |      |
- *            `----------------------------------'           '------''---------------------------'
- */
-  [_ADJUST] = LAYOUT( \
-  XXXXXXX , XXXXXXX,  XXXXXXX ,  XXXXXXX , XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  RESET  , XXXXXXX,KC_QWERTY,KC_BEAKLC,CG_TOGG,XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  XXXXXXX , XXXXXXX,CG_TOGG, XXXXXXX,    XXXXXXX,  XXXXXXX,                     XXXXXXX, KC_VOLD, KC_MUTE, KC_VOLU, XXXXXXX, XXXXXXX, \
-  XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,  XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX, \
-                   _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______ \
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQUAL,\
+  _______, XXXXXXX, KC_HASH, KC_HASH, KC_AT,   KC_CIRC,                       KC_TILD, KC_PERC, KC_DQUO, KC_EXLM, _______, _______, \
+  _______, KC_DLR,  KC_LT,   KC_UNDS, KC_GT,   KC_COMM,                       KC_AMPR, KC_LCBR, KC_EQUAL,KC_RCBR, _______, _______, \
+  _______, XXXXXXX, XXXXXXX, KC_MINS, KC_ASTR, KC_DOT,  _______,     _______, KC_PIPE, KC_COLN, KC_PLUS, KC_QUES, _______, _______, \
+               _______, _______, _______, _______, _______,              _______, _______, _______, _______, _______ \
   )
 };
 
@@ -223,14 +213,14 @@ static void print_status_narrow(void) {
         case _QWERTY:
             oled_write_P(PSTR("Base\n"), false);
             break;
-        case _RAISE:
-            oled_write_P(PSTR("Raise"), false);
+        case _EDIT:
+            oled_write_P(PSTR("Edit"), false);
             break;
-        case _LOWER:
-            oled_write_P(PSTR("Lower"), false);
+        case _NUM:
+            oled_write_P(PSTR("Num"), false);
             break;
-        case _ADJUST:
-            oled_write_P(PSTR("Adj\n"), false);
+        case _SYMBOL:
+            oled_write_P(PSTR("Symbol"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
@@ -259,12 +249,12 @@ void oled_task_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_QWERTY:
+        case KC_QWERT:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
-        case KC_BEAKLC:
+        case KC_BEAKL:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_BEAKLC);
             }
